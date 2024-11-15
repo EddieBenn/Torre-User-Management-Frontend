@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <body className="bg-gray-100 dark:bg-gray-900">
           <AlertProvider>
               <Header />
-              <main className='inconsolata'>
+              <main className='inconsolata z-0'>
                 {children}
               </main>
               <Footer />
