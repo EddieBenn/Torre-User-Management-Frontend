@@ -58,11 +58,11 @@ const Register: React.FC = () => {
             try {
               console.log('val', values)
               const response = await createUser(values);
-              if (response?.status === 200) {
+              if (response?.status === 201) {
                 addAlert('User Created Successfully:', response.data.message, 'success');
                return router.push("/");
               } else {
-                addAlert('Unexpected response status:', response.status, 'error');
+                addAlert('Error:', response?.data?.message, 'error');
               }
             } catch (error: any) {
               if (error?.response) {
@@ -175,13 +175,12 @@ const Register: React.FC = () => {
             </Form>
           )}
         </Formik>
-
       </motion.div>
       <Alerts
-        position="top-right"
-        direction="right"
-        timer={3000}
-        className="rounded-md !w-80 mt-[500px]"
+        position="bottom-right"
+        direction="left"
+        timer={4000}
+        className="rounded-md !w-80 z-[100]"
       >
       </Alerts>
     </div>

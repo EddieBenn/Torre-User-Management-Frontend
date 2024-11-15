@@ -29,7 +29,7 @@ const Home: React.FC = () => {
         setUsers(response.data.users)
         return setLoading(false)
       } else {
-        addAlert('Unexpected response status:', response.status, 'error');
+        addAlert('Error:', response?.data?.message, 'error');
         return setLoading(false)
       }
     } catch (error: any) {
@@ -50,7 +50,6 @@ const Home: React.FC = () => {
   useEffect(() => {
     setLoading(true);
     getAllUsers()
-    // return () => clearTimeout(timer);
   }, [searchTerm, selectedCity]);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -145,6 +144,7 @@ const Home: React.FC = () => {
               />
             ))
           ) : (
+            users.length > 0 ? (
             displayedUsers?.map((user:any) => (
               <div key={user.id} className="block bg-white dark:bg-gray-800 hover:scale-105 transition-all dark:border-blue-400 dark:border rounded-lg shadow-md p-4">
                 <Link href={`/user/${user.id}`}>
@@ -166,7 +166,8 @@ const Home: React.FC = () => {
                 </Link>
               </div>
             ))
-          )}
+          ):(<p className="text-xl dark:text-white text-black font-bold mb-2"> No user found </p>)
+        )}
         </div>
 
         {!loading && totalPages > 1 && (
@@ -190,10 +191,10 @@ const Home: React.FC = () => {
         )}
       </div>
       <Alerts
-        position="top-right"
-        direction="right"
-        timer={3000}
-        className="rounded-md relative z-50 !w-80"
+        position="bottom-right"
+        direction="left"
+        timer={4000}
+        className="rounded-md !w-80 z-[100]"
       >
       </Alerts>
     </>

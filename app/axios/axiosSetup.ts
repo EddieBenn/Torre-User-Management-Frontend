@@ -1,6 +1,7 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
 
 const apiHost = "https://torre-user-management.onrender.com"
+// const apiHost = "http://localhost:3000"
 
 const customAxios = axios.create({
     baseURL: `${apiHost}`,
